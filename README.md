@@ -7,4 +7,4 @@ Devangi N. Parikh, Jianyu	Huang, Margaret E.	Myers, Robert A.	van de Geijn.  Lea
 
 The notes can be found in LAFF-On-HPC.pdf.  If you clone the repository, and open that PDF locally from within the directory LAFF-On-HPC, then the links in the PDF should take you to the various activities in the subdirectory Assignments.
 
-
+If you would like to be kept informed, you may want to join our google gloup: https://groups.google.com/forum/#!forum/ulaff-on/join
