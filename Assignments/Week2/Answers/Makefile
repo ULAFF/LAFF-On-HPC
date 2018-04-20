@@ -118,5 +118,113 @@ test_JI_4x8Kernel: driver_JI_4x8Kernel.x
 
 # ---------------------
 
+TEST_OBJS_PI_JI_MCxKC := driver_MCxKC.o Gemm_PI_JI_12x4Kernel.o
+
+driver_PI_JI_MCxKC.x: $(TEST_OBJS_PI_JI_MCxKC) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_PI_JI_MCxKC) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_MCxKC.x $(LDFLAGS) 
+
+test_PI_JI_MCxKC: driver_PI_JI_MCxKC.x
+	echo "Name = 'PI_JI\_MCxKC';" > data/output_PI_JI_MCxKC.m
+	echo " " >> data/output_PI_JI_MCxKC.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PI_JI_MCxKC.x >> data/output_PI_JI_MCxKC.m
+
+# ---------------------
+
+TEST_OBJS_IJP_JI_4x4Kernel := driver.o Gemm_IJP_JI_4x4Kernel.o
+
+driver_IJP_JI_4x4Kernel.x: $(TEST_OBJS_IJP_JI_4x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_IJP_JI_4x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP_JI_4x4Kernel.x $(LDFLAGS) 
+
+test_IJP_JI_4x4Kernel: driver_IJP_JI_4x4Kernel.x
+	echo "Name = 'IJP\_JI\_4x4Kernel';" > data/output_IJP_JI_4x4Kernel.m
+	echo " " >> data/output_IJP_JI_4x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP_JI_4x4Kernel.x >> data/output_IJP_JI_4x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_IJP_JI_12x4Kernel := driver.o Gemm_IJP_JI_12x4Kernel.o
+
+driver_IJP_JI_12x4Kernel.x: $(TEST_OBJS_IJP_JI_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_IJP_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP_JI_12x4Kernel.x $(LDFLAGS) 
+
+test_IJP_JI_12x4Kernel: driver_IJP_JI_12x4Kernel.x
+	echo "Name = 'IJP\_JI\_12x4Kernel';" > data/output_IJP_JI_12x4Kernel.m
+	echo " " >> data/output_IJP_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP_JI_12x4Kernel.x >> data/output_IJP_JI_12x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_JPI_JI_12x4Kernel := driver.o Gemm_JPI_JI_12x4Kernel.o
+
+driver_JPI_JI_12x4Kernel.x: $(TEST_OBJS_JPI_JI_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_JPI_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JPI_JI_12x4Kernel.x $(LDFLAGS) 
+
+test_JPI_JI_12x4Kernel: driver_JPI_JI_12x4Kernel.x
+	echo "Name = 'JPI\_JI\_12x4Kernel';" > data/output_JPI_JI_12x4Kernel.m
+	echo " " >> data/output_JPI_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JPI_JI_12x4Kernel.x >> data/output_JPI_JI_12x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_PIJ_JI_12x4Kernel := driver.o Gemm_PIJ_JI_12x4Kernel.o
+
+driver_PIJ_JI_12x4Kernel.x: $(TEST_OBJS_PIJ_JI_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_PIJ_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PIJ_JI_12x4Kernel.x $(LDFLAGS) 
+
+test_PIJ_JI_12x4Kernel: driver_PIJ_JI_12x4Kernel.x
+	echo "Name = 'PIJ\_JI\_12x4Kernel';" > data/output_PIJ_JI_12x4Kernel.m
+	echo " " >> data/output_PIJ_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PIJ_JI_12x4Kernel.x >> data/output_PIJ_JI_12x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_PI_JI_12x4Kernel := driver.o Gemm_PI_JI_12x4Kernel.o
+
+driver_PI_JI_12x4Kernel.x: $(TEST_OBJS_PI_JI_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_PI_JI_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_JI_12x4Kernel.x $(LDFLAGS) 
+
+test_PI_JI_12x4Kernel: driver_PI_JI_12x4Kernel.x
+	echo "Name = 'PI\_JI\_12x4Kernel';" > data/output_PI_JI_12x4Kernel.m
+	echo " " >> data/output_PI_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PI_JI_12x4Kernel.x >> data/output_PI_JI_12x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_Five_Loops_12x4Kernel := driver.o Gemm_Five_Loops_12x4Kernel.o
+
+driver_Five_Loops_12x4Kernel.x: $(TEST_OBJS_Five_Loops_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_Five_Loops_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_12x4Kernel.x $(LDFLAGS) 
+
+test_Five_Loops_12x4Kernel: driver_Five_Loops_12x4Kernel.x
+	echo "Name = 'Five\_Loops\_12x4Kernel';" > data/output_Five_Loops_12x4Kernel.m
+	echo " " >> data/output_Five_Loops_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_12x4Kernel.x >> data/output_Five_Loops_12x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_Five_Loops_Pack_4x4Kernel := driver.o Gemm_Five_Loops_Pack_4x4Kernel.o
+
+driver_Five_Loops_Pack_4x4Kernel.x: $(TEST_OBJS_Five_Loops_Pack_4x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_Five_Loops_Pack_4x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_4x4Kernel.x $(LDFLAGS) 
+
+test_Five_Loops_Pack_4x4Kernel: driver_Five_Loops_Pack_4x4Kernel.x
+	echo "Name = 'Five\_Loops\_Pack\_4x4Kernel';" > data/output_Five_Loops_Pack_4x4Kernel.m
+	echo " " >> data/output_Five_Loops_Pack_4x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_Pack_4x4Kernel.x >> data/output_Five_Loops_Pack_4x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_Five_Loops_Pack_12x4Kernel := driver.o Gemm_Five_Loops_Pack_12x4Kernel.o
+
+driver_Five_Loops_Pack_12x4Kernel.x: $(TEST_OBJS_Five_Loops_Pack_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_Five_Loops_Pack_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_12x4Kernel.x $(LDFLAGS) 
+
+test_Five_Loops_Pack_12x4Kernel: driver_Five_Loops_Pack_12x4Kernel.x
+	echo "Name = 'Five\_Loops\_Pack\_12x4Kernel';" > data/output_Five_Loops_Pack_12x4Kernel.m
+	echo " " >> data/output_Five_Loops_Pack_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_Pack_12x4Kernel.x >> data/output_Five_Loops_Pack_12x4Kernel.m
+
+# ---------------------
+
 clean:
 	rm -f *.o *~ core *.x *.pdf
