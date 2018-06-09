@@ -16,9 +16,21 @@ NLAST_SMALL:= 1000#    largest size to be timed for slow implementations.
 NLAST      := 1500#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
-LDFLAGS    := -fopenmp -lpthread -m64 -lm 
+LDFLAGS    := -lpthread -m64 -lm 
 
 UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
+
+# ---------------------
+
+TEST_OBJS_IJP := driver.o Gemm_IJP.o
+
+driver_IJP.x: $(TEST_OBJS_IJP) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_IJP) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP.x $(LDFLAGS) 
+
+test_IJP: driver_IJP.x
+	echo "Name = 'IJP';" > data/output_IJP.m
+	echo " " >> data/output_IJP.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP.x >> data/output_IJP.m
 
 # ---------------------
 
@@ -42,7 +54,7 @@ driver_IJ_4x4Kernel.x: $(TEST_OBJS_IJ_4x4Kernel) $(UTIL_OBJS)
 test_IJ_4x4Kernel: driver_IJ_4x4Kernel.x
 	echo "Name = 'IJ\_4x4Kernel';" > data/output_IJ_4x4Kernel.m
 	echo " " >> data/output_IJ_4x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IJ_4x4Kernel.x >> data/output_IJ_4x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJ_4x4Kernel.x >> data/output_IJ_4x4Kernel.m
 
 # ---------------------
 
@@ -54,7 +66,7 @@ driver_JI_4x4Kernel.x: $(TEST_OBJS_JI_4x4Kernel) $(UTIL_OBJS)
 test_JI_4x4Kernel: driver_JI_4x4Kernel.x
 	echo "Name = 'JI\_4x4Kernel';" > data/output_JI_4x4Kernel.m
 	echo " " >> data/output_JI_4x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x4Kernel.x >> data/output_JI_4x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_4x4Kernel.x >> data/output_JI_4x4Kernel.m
 
 # ---------------------
 
@@ -66,7 +78,7 @@ driver_JI_8x4Kernel.x: $(TEST_OBJS_JI_8x4Kernel) $(UTIL_OBJS)
 test_JI_8x4Kernel: driver_JI_8x4Kernel.x
 	echo "Name = 'JI\_8x4Kernel';" > data/output_JI_8x4Kernel.m
 	echo " " >> data/output_JI_8x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_8x4Kernel.x >> data/output_JI_8x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_8x4Kernel.x >> data/output_JI_8x4Kernel.m
 
 # ---------------------
 
@@ -78,7 +90,7 @@ driver_JI_12x4Kernel.x: $(TEST_OBJS_JI_12x4Kernel) $(UTIL_OBJS)
 test_JI_12x4Kernel: driver_JI_12x4Kernel.x
 	echo "Name = 'JI\_12x4Kernel';" > data/output_JI_12x4Kernel.m
 	echo " " >> data/output_JI_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_12x4Kernel.x >> data/output_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_12x4Kernel.x >> data/output_JI_12x4Kernel.m
 
 # ---------------------
 
@@ -90,7 +102,7 @@ driver_JI_8x6Kernel.x: $(TEST_OBJS_JI_8x6Kernel) $(UTIL_OBJS)
 test_JI_8x6Kernel: driver_JI_8x6Kernel.x
 	echo "Name = 'JI\_8x6Kernel';" > data/output_JI_8x6Kernel.m
 	echo " " >> data/output_JI_8x6Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_8x6Kernel.x >> data/output_JI_8x6Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_8x6Kernel.x >> data/output_JI_8x6Kernel.m
 
 # ---------------------
 
@@ -102,7 +114,7 @@ driver_JI_4x8Kernel.x: $(TEST_OBJS_JI_4x8Kernel) $(UTIL_OBJS)
 test_JI_4x8Kernel: driver_JI_4x8Kernel.x
 	echo "Name = 'JI\_4x8Kernel';" > data/output_JI_4x8Kernel.m
 	echo " " >> data/output_JI_4x8Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JI_4x8Kernel.x >> data/output_JI_4x8Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_4x8Kernel.x >> data/output_JI_4x8Kernel.m
 
 # ---------------------
 
@@ -114,7 +126,7 @@ driver_PI_JI_MCxKC.x: $(TEST_OBJS_PI_JI_MCxKC) $(UTIL_OBJS)
 test_PI_JI_MCxKC: driver_PI_JI_MCxKC.x
 	echo "Name = 'PI_JI\_MCxKC';" > data/output_PI_JI_MCxKC.m
 	echo " " >> data/output_PI_JI_MCxKC.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PI_JI_MCxKC.x >> data/output_PI_JI_MCxKC.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PI_JI_MCxKC.x >> data/output_PI_JI_MCxKC.m
 
 # ---------------------
 
@@ -126,7 +138,7 @@ driver_IJP_JI_4x4Kernel.x: $(TEST_OBJS_IJP_JI_4x4Kernel) $(UTIL_OBJS)
 test_IJP_JI_4x4Kernel: driver_IJP_JI_4x4Kernel.x
 	echo "Name = 'IJP\_JI\_4x4Kernel';" > data/output_IJP_JI_4x4Kernel.m
 	echo " " >> data/output_IJP_JI_4x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IJP_JI_4x4Kernel.x >> data/output_IJP_JI_4x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP_JI_4x4Kernel.x >> data/output_IJP_JI_4x4Kernel.m
 
 # ---------------------
 
@@ -138,7 +150,7 @@ driver_IJP_JI_12x4Kernel.x: $(TEST_OBJS_IJP_JI_12x4Kernel) $(UTIL_OBJS)
 test_IJP_JI_12x4Kernel: driver_IJP_JI_12x4Kernel.x
 	echo "Name = 'IJP\_JI\_12x4Kernel';" > data/output_IJP_JI_12x4Kernel.m
 	echo " " >> data/output_IJP_JI_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_IJP_JI_12x4Kernel.x >> data/output_IJP_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP_JI_12x4Kernel.x >> data/output_IJP_JI_12x4Kernel.m
 
 # ---------------------
 
@@ -150,7 +162,7 @@ driver_JPI_JI_12x4Kernel.x: $(TEST_OBJS_JPI_JI_12x4Kernel) $(UTIL_OBJS)
 test_JPI_JI_12x4Kernel: driver_JPI_JI_12x4Kernel.x
 	echo "Name = 'JPI\_JI\_12x4Kernel';" > data/output_JPI_JI_12x4Kernel.m
 	echo " " >> data/output_JPI_JI_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_JPI_JI_12x4Kernel.x >> data/output_JPI_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JPI_JI_12x4Kernel.x >> data/output_JPI_JI_12x4Kernel.m
 
 # ---------------------
 
@@ -162,7 +174,7 @@ driver_PIJ_JI_12x4Kernel.x: $(TEST_OBJS_PIJ_JI_12x4Kernel) $(UTIL_OBJS)
 test_PIJ_JI_12x4Kernel: driver_PIJ_JI_12x4Kernel.x
 	echo "Name = 'PIJ\_JI\_12x4Kernel';" > data/output_PIJ_JI_12x4Kernel.m
 	echo " " >> data/output_PIJ_JI_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PIJ_JI_12x4Kernel.x >> data/output_PIJ_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PIJ_JI_12x4Kernel.x >> data/output_PIJ_JI_12x4Kernel.m
 
 # ---------------------
 
@@ -174,7 +186,7 @@ driver_PI_JI_12x4Kernel.x: $(TEST_OBJS_PI_JI_12x4Kernel) $(UTIL_OBJS)
 test_PI_JI_12x4Kernel: driver_PI_JI_12x4Kernel.x
 	echo "Name = 'PI\_JI\_12x4Kernel';" > data/output_PI_JI_12x4Kernel.m
 	echo " " >> data/output_PI_JI_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PI_JI_12x4Kernel.x >> data/output_PI_JI_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PI_JI_12x4Kernel.x >> data/output_PI_JI_12x4Kernel.m
 
 # ---------------------
 
@@ -186,7 +198,7 @@ driver_Five_Loops_12x4Kernel.x: $(TEST_OBJS_Five_Loops_12x4Kernel) $(UTIL_OBJS)
 test_Five_Loops_12x4Kernel: driver_Five_Loops_12x4Kernel.x
 	echo "Name = 'Five\_Loops\_12x4Kernel';" > data/output_Five_Loops_12x4Kernel.m
 	echo " " >> data/output_Five_Loops_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_12x4Kernel.x >> data/output_Five_Loops_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_12x4Kernel.x >> data/output_Five_Loops_12x4Kernel.m
 
 # ---------------------
 
@@ -198,7 +210,7 @@ driver_Five_Loops_Pack_4x4Kernel.x: $(TEST_OBJS_Five_Loops_Pack_4x4Kernel) $(UTI
 test_Five_Loops_Pack_4x4Kernel: driver_Five_Loops_Pack_4x4Kernel.x
 	echo "Name = 'Five\_Loops\_Pack\_4x4Kernel';" > data/output_Five_Loops_Pack_4x4Kernel.m
 	echo " " >> data/output_Five_Loops_Pack_4x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_4x4Kernel.x >> data/output_Five_Loops_Pack_4x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_Pack_4x4Kernel.x >> data/output_Five_Loops_Pack_4x4Kernel.m
 
 # ---------------------
 
@@ -210,7 +222,7 @@ driver_Five_Loops_Pack_12x4Kernel.x: $(TEST_OBJS_Five_Loops_Pack_12x4Kernel) $(U
 test_Five_Loops_Pack_12x4Kernel: driver_Five_Loops_Pack_12x4Kernel.x
 	echo "Name = 'Five\_Loops\_Pack\_12x4Kernel';" > data/output_Five_Loops_Pack_12x4Kernel.m
 	echo " " >> data/output_Five_Loops_Pack_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_12x4Kernel.x >> data/output_Five_Loops_Pack_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_Pack_12x4Kernel.x >> data/output_Five_Loops_Pack_12x4Kernel.m
 
 # ---------------------
 
