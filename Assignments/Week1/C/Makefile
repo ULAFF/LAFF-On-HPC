@@ -28,7 +28,7 @@ driver_IJP.x: $(TEST_OBJS_IJP) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IJP) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP.x $(LDFLAGS) 
 
 test_IJP: driver_IJP.x
-	echo "your_version = 'IJP';" > data/output_IJP.m
+	echo "Name = 'IJP';" > data/output_IJP.m
 	echo " " >> data/output_IJP.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP.x >> data/output_IJP.m
 
@@ -40,7 +40,7 @@ driver_IPJ.x: $(TEST_OBJS_IPJ) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IPJ) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IPJ.x $(LDFLAGS) 
 
 test_IPJ: driver_IPJ.x
-	echo "your_version = 'IPJ';" > data/output_IPJ.m
+	echo "Name = 'IPJ';" > data/output_IPJ.m
 	echo " " >> data/output_IPJ.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IPJ.x >> data/output_IPJ.m
 
@@ -52,7 +52,7 @@ driver_IP_Axpy.x: $(TEST_OBJS_IP_Axpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IP_Axpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IP_Axpy.x $(LDFLAGS) 
 
 test_IP_Axpy: driver_IP_Axpy.x
-	echo "your_version = 'IP\_Axpy';" > data/output_IP_Axpy.m
+	echo "Name = 'IP\_Axpy';" > data/output_IP_Axpy.m
 	echo " " >> data/output_IP_Axpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IP_Axpy.x >> data/output_IP_Axpy.m
 
@@ -64,7 +64,7 @@ driver_IP_daxpy.x: $(TEST_OBJS_IP_daxpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IP_daxpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IP_daxpy.x $(LDFLAGS) 
 
 test_IP_daxpy: driver_IP_daxpy.x
-	echo "your_version = 'IP\_daxpy';" > data/output_IP_daxpy.m
+	echo "Name = 'IP\_daxpy';" > data/output_IP_daxpy.m
 	echo " " >> data/output_IP_daxpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IP_daxpy.x >> data/output_IP_daxpy.m
 
@@ -76,7 +76,7 @@ driver_IP_bli_daxpyv.x: $(TEST_OBJS_IP_bli_daxpyv) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IP_bli_daxpyv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IP_bli_daxpyv.x $(LDFLAGS) 
 
 test_IP_bli_daxpyv: driver_IP_bli_daxpyv.x
-	echo "your_version = 'IP\_bli_daxpyv';" > data/output_IP_bli_daxpyv.m
+	echo "Name = 'IP\_bli_daxpyv';" > data/output_IP_bli_daxpyv.m
 	echo " " >> data/output_IP_bli_daxpyv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IP_bli_daxpyv.x >> data/output_IP_bli_daxpyv.m
 
@@ -88,7 +88,7 @@ driver_JIP.x: $(TEST_OBJS_JIP) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JIP) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JIP.x $(LDFLAGS) 
 
 test_JIP: driver_JIP.x
-	echo "your_version = 'JIP';" > data/output_JIP.m
+	echo "Name = 'JIP';" > data/output_JIP.m
 	echo " " >> data/output_JIP.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JIP.x >> data/output_JIP.m
 
@@ -100,7 +100,7 @@ driver_JPI.x: $(TEST_OBJS_JPI) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JPI) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JPI.x $(LDFLAGS) 
 
 test_JPI: driver_JPI.x
-	echo "your_version = 'JPI';" > data/output_JPI.m
+	echo "Name = 'JPI';" > data/output_JPI.m
 	echo " " >> data/output_JPI.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JPI.x >> data/output_JPI.m
 
@@ -112,7 +112,7 @@ driver_PIJ.x: $(TEST_OBJS_PIJ) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PIJ) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PIJ.x $(LDFLAGS) 
 
 test_PIJ: driver_PIJ.x
-	echo "your_version = 'PIJ';" > data/output_PIJ.m
+	echo "Name = 'PIJ';" > data/output_PIJ.m
 	echo " " >> data/output_PIJ.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PIJ.x >> data/output_PIJ.m
 
@@ -124,7 +124,7 @@ driver_PI_Axpy.x: $(TEST_OBJS_PI_Axpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PI_Axpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_Axpy.x $(LDFLAGS) 
 
 test_PI_Axpy: driver_PI_Axpy.x
-	echo "your_version = 'PI_Axpy';" > data/output_PI_Axpy.m
+	echo "Name = 'PI_Axpy';" > data/output_PI_Axpy.m
 	echo " " >> data/output_PI_Axpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PI_Axpy.x >> data/output_PI_Axpy.m
 
@@ -136,7 +136,7 @@ driver_PI_daxpy.x: $(TEST_OBJS_PI_daxpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PI_daxpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_daxpy.x $(LDFLAGS) 
 
 test_PI_daxpy: driver_PI_daxpy.x
-	echo "your_version = 'PI_daxpy';" > data/output_PI_daxpy.m
+	echo "Name = 'PI_daxpy';" > data/output_PI_daxpy.m
 	echo " " >> data/output_PI_daxpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PI_daxpy.x >> data/output_PI_daxpy.m
 
@@ -148,7 +148,7 @@ driver_PI_bli_daxpyv.x: $(TEST_OBJS_PI_bli_daxpyv) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PI_bli_daxpyv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PI_bli_daxpyv.x $(LDFLAGS) 
 
 test_PI_bli_daxpyv: driver_PI_bli_daxpyv.x
-	echo "your_version = 'PI_bli_daxpyv';" > data/output_PI_bli_daxpyv.m
+	echo "Name = 'PI_bli_daxpyv';" > data/output_PI_bli_daxpyv.m
 	echo " " >> data/output_PI_bli_daxpyv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PI_bli_daxpyv.x >> data/output_PI_bli_daxpyv.m
 
@@ -160,7 +160,7 @@ driver_IJ_Dots.x: $(TEST_OBJS_IJ_DOTS) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IJ_DOTS) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJ_Dots.x $(LDFLAGS) 
 
 test_IJ_Dots: driver_IJ_Dots.x
-	echo "your_version = 'IJ\_Dots';" > data/output_IJ_Dots.m
+	echo "Name = 'IJ\_Dots';" > data/output_IJ_Dots.m
 	echo " " >> data/output_IJ_Dots.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJ_Dots.x >> data/output_IJ_Dots.m
 
@@ -172,7 +172,7 @@ driver_IJ_ddot.x: $(TEST_OBJS_IJ_ddot) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IJ_ddot) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJ_ddot.x $(LDFLAGS) 
 
 test_IJ_ddot: driver_IJ_ddot.x
-	echo "your_version = 'IJ\_ddot';" > data/output_IJ_ddot.m
+	echo "Name = 'IJ\_ddot';" > data/output_IJ_ddot.m
 	echo " " >> data/output_IJ_ddot.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJ_ddot.x >> data/output_IJ_ddot.m
 
@@ -184,7 +184,7 @@ driver_IJ_bli_ddotxv.x: $(TEST_OBJS_IJ_bli_ddotxv) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_IJ_bli_ddotxv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJ_bli_ddotxv.x $(LDFLAGS) 
 
 test_IJ_bli_ddotxv: driver_IJ_bli_ddotxv.x
-	echo "your_version = 'IJ\_bli\_ddotxv';" > data/output_IJ_bli_ddotxv.m
+	echo "Name = 'IJ\_bli\_ddotxv';" > data/output_IJ_bli_ddotxv.m
 	echo " " >> data/output_IJ_bli_ddotxv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJ_bli_ddotxv.x >> data/output_IJ_bli_ddotxv.m
 
@@ -196,7 +196,7 @@ driver_JI_Dots.x: $(TEST_OBJS_JI_DOTS) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JI_DOTS) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_Dots.x $(LDFLAGS) 
 
 test_JI_Dots: driver_JI_Dots.x
-	echo "your_version = 'JI\_Dots';" > data/output_JI_Dots.m
+	echo "Name = 'JI\_Dots';" > data/output_JI_Dots.m
 	echo " " >> data/output_JI_Dots.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_Dots.x >> data/output_JI_Dots.m
 
@@ -208,7 +208,7 @@ driver_JI_ddot.x: $(TEST_OBJS_JI_ddot) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JI_ddot) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_ddot.x $(LDFLAGS) 
 
 test_JI_ddot: driver_JI_ddot.x
-	echo "your_version = 'JI\_ddot';" > data/output_JI_ddot.m
+	echo "Name = 'JI\_ddot';" > data/output_JI_ddot.m
 	echo " " >> data/output_JI_ddot.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_ddot.x >> data/output_JI_ddot.m
 
@@ -220,7 +220,7 @@ driver_JI_bli_ddotxv.x: $(TEST_OBJS_JI_bli_ddotxv) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JI_bli_ddotxv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_bli_ddotxv.x $(LDFLAGS) 
 
 test_JI_bli_ddotxv: driver_JI_bli_ddotxv.x
-	echo "your_version = 'JI\_bli\_ddotxv';" > data/output_JI_bli_ddotxv.m
+	echo "Name = 'JI\_bli\_ddotxv';" > data/output_JI_bli_ddotxv.m
 	echo " " >> data/output_JI_bli_ddotxv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_bli_ddotxv.x >> data/output_JI_bli_ddotxv.m
 
@@ -232,7 +232,7 @@ driver_JP_Axpy.x: $(TEST_OBJS_JP_Axpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JP_Axpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JP_Axpy.x $(LDFLAGS) 
 
 test_JP_Axpy: driver_JP_Axpy.x
-	echo "your_version = 'JP\_Axpy';" > data/output_JP_Axpy.m
+	echo "Name = 'JP\_Axpy';" > data/output_JP_Axpy.m
 	echo " " >> data/output_JP_Axpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JP_Axpy.x >> data/output_JP_Axpy.m
 
@@ -244,7 +244,7 @@ driver_JP_daxpy.x: $(TEST_OBJS_JP_daxpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JP_daxpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JP_daxpy.x $(LDFLAGS) 
 
 test_JP_daxpy: driver_JP_daxpy.x
-	echo "your_version = 'JP\_daxpy';" > data/output_JP_daxpy.m
+	echo "Name = 'JP\_daxpy';" > data/output_JP_daxpy.m
 	echo " " >> data/output_JP_daxpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JP_daxpy.x >> data/output_JP_daxpy.m
 
@@ -256,7 +256,7 @@ driver_JP_bli_daxpyv.x: $(TEST_OBJS_JP_bli_daxpyv) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_JP_bli_daxpyv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JP_bli_daxpyv.x $(LDFLAGS) 
 
 test_JP_bli_daxpyv: driver_JP_bli_daxpyv.x
-	echo "your_version = 'JP\_bli_daxpyv';" > data/output_JP_bli_daxpyv.m
+	echo "Name = 'JP\_bli_daxpyv';" > data/output_JP_bli_daxpyv.m
 	echo " " >> data/output_JP_bli_daxpyv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JP_bli_daxpyv.x >> data/output_JP_bli_daxpyv.m
 
@@ -268,7 +268,7 @@ driver_PJI.x: $(TEST_OBJS_PJI) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PJI) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PJI.x $(LDFLAGS) 
 
 test_PJI: driver_PJI.x
-	echo "your_version = 'PJI';" > data/output_PJI.m
+	echo "Name = 'PJI';" > data/output_PJI.m
 	echo " " >> data/output_PJI.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PJI.x >> data/output_PJI.m
 
@@ -280,7 +280,7 @@ driver_PJ_Axpy.x: $(TEST_OBJS_PJ_Axpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PJ_Axpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PJ_Axpy.x $(LDFLAGS) 
 
 test_PJ_Axpy: driver_PJ_Axpy.x
-	echo "your_version = 'PJ\_Axpy';" > data/output_PJ_Axpy.m
+	echo "Name = 'PJ\_Axpy';" > data/output_PJ_Axpy.m
 	echo " " >> data/output_PJ_Axpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PJ_Axpy.x >> data/output_PJ_Axpy.m
 
@@ -292,7 +292,7 @@ driver_PJ_daxpy.x: $(TEST_OBJS_PJ_daxpy) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PJ_daxpy) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PJ_daxpy.x $(LDFLAGS) 
 
 test_PJ_daxpy: driver_PJ_daxpy.x
-	echo "your_version = 'PJ\_daxpy';" > data/output_PJ_daxpy.m
+	echo "Name = 'PJ\_daxpy';" > data/output_PJ_daxpy.m
 	echo " " >> data/output_PJ_daxpy.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PJ_daxpy.x >> data/output_PJ_daxpy.m
 
@@ -304,7 +304,7 @@ driver_PJ_bli_daxpyv.x: $(TEST_OBJS_PJ_bli_daxpyv) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_PJ_bli_daxpyv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_PJ_bli_daxpyv.x $(LDFLAGS) 
 
 test_PJ_bli_daxpyv: driver_PJ_bli_daxpyv.x
-	echo "your_version = 'PJ\_bli_daxpyv';" > data/output_PJ_bli_daxpyv.m
+	echo "Name = 'PJ\_bli_daxpyv';" > data/output_PJ_bli_daxpyv.m
 	echo " " >> data/output_PJ_bli_daxpyv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_PJ_bli_daxpyv.x >> data/output_PJ_bli_daxpyv.m
 
@@ -316,7 +316,7 @@ driver_P_Ger.x: $(TEST_OBJS_P_GER) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_P_GER) $(UTIL_OBJS) $(BLAS_LIB) -o driver_P_Ger.x $(LDFLAGS) 
 
 test_P_Ger: driver_P_Ger.x
-	echo "your_version = 'P\_Ger';" > data/output_P_Ger.m
+	echo "Name = 'P\_Ger';" > data/output_P_Ger.m
 	echo " " >> data/output_P_Ger.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_P_Ger.x >> data/output_P_Ger.m
 
@@ -328,7 +328,7 @@ driver_J_Gemv.x: $(TEST_OBJS_J_GEMV) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_J_GEMV) $(UTIL_OBJS) $(BLAS_LIB) -o driver_J_Gemv.x $(LDFLAGS) 
 
 test_J_Gemv: driver_J_Gemv.x
-	echo "your_version = 'J\_Gemv';" > data/output_J_Gemv.m
+	echo "Name = 'J\_Gemv';" > data/output_J_Gemv.m
 	echo " " >> data/output_J_Gemv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_J_Gemv.x >> data/output_J_Gemv.m
 
@@ -340,7 +340,7 @@ driver_J_dgemv.x: $(TEST_OBJS_J_dgemv) $(UTIL_OBJS)
 	$(LINKER) $(TEST_OBJS_J_dgemv) $(UTIL_OBJS) $(BLAS_LIB) -o driver_J_dgemv.x $(LDFLAGS) 
 
 test_J_dgemv: driver_J_dgemv.x
-	echo "your_version = 'J\_dgemv';" > data/output_J_dgemv.m
+	echo "Name = 'J\_dgemv';" > data/output_J_dgemv.m
 	echo " " >> data/output_J_dgemv.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_J_dgemv.x >> data/output_J_dgemv.m
 
