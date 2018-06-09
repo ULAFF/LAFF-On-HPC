@@ -14,9 +14,8 @@
 #define NR 4
 
 void LoopFive( int, int, int, double *, int, double *, int, double *, int );
-void LoopFour( int, int, int, double *, int, double *,
-	       double *, int,  double *, double *, int );
-void LoopThree( int, int, int, double *, int, double *, double *,  double *, int );
+void LoopFour( int, int, int, double *, int, double *, int,  double *, int );
+void LoopThree( int, int, int, double *, int, double *, double *, int );
 void LoopTwo( int, int, int, double *, double *, double *, int );
 void LoopOne( int, int, int, double *, double *, double *, int );
 void Gemm_12x4Kernel_Packed( int, double *, double *, double *, int );
@@ -41,38 +40,37 @@ void GemmWrapper( int m, int n, int k, double *A, int ldA,
 void LoopFive( int m, int n, int k, double *A, int ldA,
 		   double *B, int ldB, double *C, int ldC )
 {
-  double *Atilde = ( double * ) malloc( MC * KC * sizeof( double ) );
-  double *Btilde = ( double * ) malloc( KC * NC * sizeof( double ) );
-
   for ( int j=0; j<n; j+=NC ) {
     int jb = min( NC, n-j );    /* Last loop may not involve a full block */
-    LoopFour( m, jb, k, A, ldA, Atilde, &beta( 0,j ), ldB, Btilde,
-	      &gamma( 0,j ), ldC );
-  }
-
-  free( Btilde); 
-  free( Atilde); 
+    LoopFour( m, jb, k, A, ldA, &beta( 0,j ), ldB, &gamma( 0,j ), ldC );
+  } 
 }
 
-void LoopFour( int m, int n, int k, double *A, int ldA, double *Atilde,
-	       double *B, int ldB, double *Btilde, double *C, int ldC )
+void LoopFour( int m, int n, int k, double *A, int ldA, double *B, int ldB,
+	       double *C, int ldC )
 {
+  double *Btilde = ( double * ) malloc( KC * NC * sizeof( double ) );
+  
   for ( int p=0; p<k; p+=KC ) {
     int pb = min( KC, k-p );    /* Last loop may not involve a full block */
     PackPanelB_KCxNC( pb, n, &beta( p, 0 ), ldB, Btilde );
-    LoopThree( m, n, pb, &alpha( 0, p ), ldA, Atilde, Btilde, C, ldC );
+    LoopThree( m, n, pb, &alpha( 0, p ), ldA, Btilde, C, ldC );
   }
 
+  free( Btilde); 
 }
 
-void LoopThree( int m, int n, int k, double *A, int ldA, double *Atilde, 
-		double *Btilde, double *C, int ldC )
+void LoopThree( int m, int n, int k, double *A, int ldA, double *Btilde, double *C, int ldC )
 {
+  double *Atilde = ( double * ) malloc( MC * KC * sizeof( double ) );
+       
   for ( int i=0; i<m; i+=MC ) {
     int ib = min( MC, m-i );    /* Last loop may not involve a full block */
     PackBlockA_MCxKC( ib, k, &alpha( i, 0 ), ldA, Atilde );
     LoopTwo( ib, n, k, Atilde, Btilde, &gamma( i,0 ), ldC );
   }
+
+  free( Atilde);
 }
 
 void LoopTwo( int m, int n, int k, double *Atilde, double *Btilde, double *C, int ldC )
@@ -153,6 +151,7 @@ void PackPanelB_KCxNC( int k, int n, double *B, int ldB, double *Btilde )
     Btilde += k * jb;
   }
 }
+
 
 #include<immintrin.h>
 

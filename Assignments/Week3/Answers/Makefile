@@ -42,7 +42,7 @@ driver_Five_Loops_12x4Kernel.x: $(TEST_OBJS_Five_Loops_12x4Kernel) $(UTIL_OBJS)
 test_Five_Loops_12x4Kernel: driver_Five_Loops_12x4Kernel.x
 	echo "Name = 'Five\_Loops\_12x4Kernel';" > data/output_Five_Loops_12x4Kernel.m
 	echo " " >> data/output_Five_Loops_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_12x4Kernel.x >> data/output_Five_Loops_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_12x4Kernel.x >> data/output_Five_Loops_12x4Kernel.m
 
 # ---------------------
 
@@ -66,7 +66,19 @@ driver_Five_Loops_Pack_12x4Kernel.x: $(TEST_OBJS_Five_Loops_Pack_12x4Kernel) $(U
 test_Five_Loops_Pack_12x4Kernel: driver_Five_Loops_Pack_12x4Kernel.x
 	echo "Name = 'Five\_Loops\_Pack\_12x4Kernel';" > data/output_Five_Loops_Pack_12x4Kernel.m
 	echo " " >> data/output_Five_Loops_Pack_12x4Kernel.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_Five_Loops_Pack_12x4Kernel.x >> data/output_Five_Loops_Pack_12x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_12x4Kernel.x >> data/output_Five_Loops_Pack_12x4Kernel.m
+
+# ---------------------
+
+TEST_OBJS_Five_Loops_Pack_12x4Kernel_OPT := driver.o Gemm_Five_Loops_Pack_12x4Kernel_OPT.o
+
+driver_Five_Loops_Pack_12x4Kernel_OPT.x: $(TEST_OBJS_Five_Loops_Pack_12x4Kernel_OPT) $(UTIL_OBJS)
+	$(LINKER) $(TEST_OBJS_Five_Loops_Pack_12x4Kernel_OPT) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_12x4Kernel_OPT.x $(LDFLAGS) 
+
+test_Five_Loops_Pack_12x4Kernel_OPT: driver_Five_Loops_Pack_12x4Kernel_OPT.x
+	echo "Name = 'Five\_Loops\_Pack\_12x4Kernel\_OPT';" > data/output_Five_Loops_Pack_12x4Kernel_OPT.m
+	echo " " >> data/output_Five_Loops_Pack_12x4Kernel_OPT.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_12x4Kernel_OPT.x >> data/output_Five_Loops_Pack_12x4Kernel_OPT.m
 
 # ---------------------
 
