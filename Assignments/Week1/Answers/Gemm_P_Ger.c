@@ -2,17 +2,12 @@
 #define beta( i,j )  B[ (j)*ldB + i ]   // map beta( i,j )  to array B
 #define gamma( i,j ) C[ (j)*ldC + i ]   // map gamma( i,j ) to array C
 
-void dgemv_( char *, int *, int *, double *, double *, int *,
-	     double *, int *, double *, double *, int * );
+void Ger( int, int, double *, int, double *, int, double *, int );
 
 void MyGemm( int m, int n, int k, double *A, int ldA,
 	     double *B, int ldB, double *C, int ldC )
 {
-  int i_one = 1;
-  double d_one = 1.0;
-  
-  for ( int i=0; i<m; i++ )
-    dgemv_( "Transpose", &k, &n, &d_one, B, &ldA, &alpha( i, 0 ), &ldA,
-	    &d_one, &gamma( i,0 ), &ldC );
+  for ( int p=0; p<k; p++ )
+    Ger( m, n, &alpha( 0,p ), 1, &beta( p,0 ), ldB, C, ldC );
 }
   

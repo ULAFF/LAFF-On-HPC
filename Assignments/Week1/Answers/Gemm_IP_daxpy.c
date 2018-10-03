@@ -2,20 +2,10 @@
 #define beta( i,j )  B[ (j)*ldB + i ]   // map beta( i,j )  to array B
 #define gamma( i,j ) C[ (j)*ldC + i ]   // map gamma( i,j ) to array C
 
-void Gemm_IP_daxpy( int, int, int, double *, int, double *, int, double *, int );
 void daxpy_( int *, double *, double *, int *, double *, int * );
 
-void GemmWrapper( int m, int n, int k, double *A, int ldA,
-		  double *B, int ldB, double *C, int ldC )
-{
-  Gemm_IP_daxpy( m, n, k, A, ldA, B, ldB, C, ldC );
-}
-
-
-void Gemm_IP_daxpy( int m, int n, int k,
-		   double *A, int ldA,
-		   double *B, int ldB,
-		   double *C, int ldC )
+void MyGemm( int m, int n, int k, double *A, int ldA,
+	     double *B, int ldB, double *C, int ldC )
 {
   for ( int i=0; i<m; i++ )
     for ( int p=0; p<k; p++ )
