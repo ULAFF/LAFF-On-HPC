@@ -4,8 +4,8 @@
 
 void Axpy( int, double, double *, int, double *, int );
 
-void Ger_I_Axpy( int m, int n, double *x, int incx,
-		 double *y, int incy, double *A, int ldA )
+void Ger( int m, int n, double *x, int incx,
+	  double *y, int incy, double *A, int ldA )
 {
   for ( int i=0; i<m; i++ )
     Axpy(  ,  ,  ,  ,  ,  );

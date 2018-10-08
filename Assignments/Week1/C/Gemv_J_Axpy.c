@@ -4,8 +4,8 @@
 
 void Dots( int, const double *, int, const double *, int, double * );
 
-void Gemv_J_Axpy( int m, int n, double *A, int ldA,
-                  double *x, int incx, double *y, int incy )
+void Gemv( int m, int n, double *A, int ldA,
+           double *x, int incx, double *y, int incy )
 {
   for ( int j=0; j<n; j++ )
     Axpy(   ,    ,    ,    ,    ,     );
