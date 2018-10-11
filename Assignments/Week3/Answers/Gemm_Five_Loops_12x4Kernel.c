@@ -18,11 +18,10 @@ void LoopFour( int, int, int, double *, int, double *, int, double *, int );
 void LoopThree( int, int, int, double *, int, double *, int, double *, int );
 void LoopTwo( int, int, int, double *, int, double *, int, double *, int );
 void LoopOne( int, int, int, double *, int, double *, int, double *, int );
-
 void Gemm_12x4Kernel( int, double *, int, double *, int, double *, int );
   
-void GemmWrapper( int m, int n, int k, double *A, int ldA,
-		  double *B, int ldB, double *C, int ldC )
+void MyGemm( int m, int n, int k, double *A, int ldA,
+	     double *B, int ldB, double *C, int ldC )
 {
   if ( m % MR != 0 || MC % MR != 0 ){
     printf( "m and MC must be multiples of MR\n" );
