@@ -12,7 +12,7 @@ FFLAGS     := $(CFLAGS)
 # set the range of experiments to be performed
 NREPEATS   := 3#       number of times each experiment is repeated.  The best time is reported.
 NFIRST     := 48#     smallest size to be timed.
-NLAST_SMALL:= 1500#    largest size to be timed for slow implementations.
+NLAST_SMALL:= 1000#    largest size to be timed for slow implementations.
 NLAST      := 1500#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
@@ -40,6 +40,7 @@ Parallel_Loop1_12x4Kernel: driver_Parallel_Loop1_12x4Kernel.x
 	echo "Name = 'Parallel\_Loop1\_12x4Kernel';" > data/output_Parallel_Loop1_12x4Kernel.m
 	echo " " >> data/output_Parallel_Loop1_12x4Kernel.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Parallel_Loop1_12x4Kernel.x >> data/output_Parallel_Loop1_12x4Kernel.m
+	more data/output_Parallel_Loop1_12x4Kernel.m
 
 # ---------------------
 
@@ -52,6 +53,7 @@ Parallel_Loop2_12x4Kernel: driver_Parallel_Loop2_12x4Kernel.x
 	echo "Name = 'Parallel\_Loop2\_12x4Kernel';" > data/output_Parallel_Loop2_12x4Kernel.m
 	echo " " >> data/output_Parallel_Loop2_12x4Kernel.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Parallel_Loop2_12x4Kernel.x >> data/output_Parallel_Loop2_12x4Kernel.m
+	more data/output_Parallel_Loop2_12x4Kernel.m
 
 # ---------------------
 
@@ -64,6 +66,7 @@ Parallel_Loop3_12x4Kernel: driver_Parallel_Loop3_12x4Kernel.x
 	echo "Name = 'Parallel\_Loop3\_12x4Kernel';" > data/output_Parallel_Loop3_12x4Kernel.m
 	echo " " >> data/output_Parallel_Loop3_12x4Kernel.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Parallel_Loop3_12x4Kernel.x >> data/output_Parallel_Loop3_12x4Kernel.m
+	more data/output_Parallel_Loop3_12x4Kernel.m
 
 # ---------------------
 
