@@ -8,24 +8,16 @@
 #define MR 4
 #define NR 4
 
-void Gemm_JI_4x4Kernel( int, int, int, double *, int, double *, int, double *, int );
-
 void Gemm_4x4Kernel( int, double *, int, double *, int, double *, int );
 
-void GemmWrapper( int m, int n, int k, double *A, int ldA,
-		  double *B, int ldB, double *C, int ldC )
+void MyGemm( int m, int n, int k, double *A, int ldA,
+	     double *B, int ldB, double *C, int ldC )
 {
   if ( m % MR != 0 || n % NR != 0 ){
     printf( "m and n must be multiples of MR and NR, respectively \n" );
     exit( 0 );
   }
   
-  Gemm_JI_4x4Kernel( m, n, k, A, ldA, B, ldB, C, ldC );
-}
-
-void Gemm_JI_4x4Kernel( int m, int n, int k, double *A, int ldA,
-                                  double *B, int ldB, double *C, int ldC )
-{
   for ( int j=0; j<n; j+=NR ) /* n is assumed to be a multiple of NR */
     for ( int i=0; i<m; i+=MR ) /* m is assumed to be a multiple of MR */
       Gemm_4x4Kernel( k, &alpha( i,0 ), ldA, &beta( 0,j ), ldB, &gamma( i,j ), ldC );
@@ -59,6 +51,7 @@ void Gemm_4x4Kernel( int k, double *A, int ldA, double *B, int ldB,
     
     /* REPEAT for second, third, and fourth columns of C.  Notice that the 
        current column of A needs not be reloaded. */
+
   }
   
   /* Store the updated results */
