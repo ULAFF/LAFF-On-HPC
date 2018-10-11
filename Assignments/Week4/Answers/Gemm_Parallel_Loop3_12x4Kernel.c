@@ -24,8 +24,8 @@ void Gemm_12x4Kernel_Packed( int, double *, double *, double *, int );
 void PackBlockA_MCxKC( int, int, double *, int, double * );
 void PackPanelB_KCxNC( int, int, double *, int, double * );
   
-void GemmWrapper( int m, int n, int k, double *A, int ldA,
-		  double *B, int ldB, double *C, int ldC )
+void MyGemm( int m, int n, int k, double *A, int ldA,
+	     double *B, int ldB, double *C, int ldC )
 {
   if ( m % MR != 0 || MC % MR != 0 ){
     printf( "m and MC must be multiples of MR\n" );

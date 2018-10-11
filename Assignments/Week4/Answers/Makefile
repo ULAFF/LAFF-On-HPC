@@ -31,36 +31,36 @@ HelloWorld2:    HelloWorld2.o
 
 # ---------------------
 
-TEST_OBJS_Parallel_Loop1_12x4Kernel := driver.o Gemm_Parallel_Loop1_12x4Kernel.o
+OBJS_Parallel_Loop1_12x4Kernel := driver.o Gemm_Parallel_Loop1_12x4Kernel.o
 
-driver_Parallel_Loop1_12x4Kernel.x: $(TEST_OBJS_Parallel_Loop1_12x4Kernel) $(UTIL_OBJS)
-	$(LINKER) $(TEST_OBJS_Parallel_Loop1_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Parallel_Loop1_12x4Kernel.x $(LDFLAGS) 
+driver_Parallel_Loop1_12x4Kernel.x: $(OBJS_Parallel_Loop1_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Parallel_Loop1_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Parallel_Loop1_12x4Kernel.x $(LDFLAGS) 
 
-test_Parallel_Loop1_12x4Kernel: driver_Parallel_Loop1_12x4Kernel.x
+Parallel_Loop1_12x4Kernel: driver_Parallel_Loop1_12x4Kernel.x
 	echo "Name = 'Parallel\_Loop1\_12x4Kernel';" > data/output_Parallel_Loop1_12x4Kernel.m
 	echo " " >> data/output_Parallel_Loop1_12x4Kernel.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Parallel_Loop1_12x4Kernel.x >> data/output_Parallel_Loop1_12x4Kernel.m
 
 # ---------------------
 
-TEST_OBJS_Parallel_Loop2_12x4Kernel := driver.o Gemm_Parallel_Loop2_12x4Kernel.o
+OBJS_Parallel_Loop2_12x4Kernel := driver.o Gemm_Parallel_Loop2_12x4Kernel.o
 
-driver_Parallel_Loop2_12x4Kernel.x: $(TEST_OBJS_Parallel_Loop2_12x4Kernel) $(UTIL_OBJS)
-	$(LINKER) $(TEST_OBJS_Parallel_Loop2_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Parallel_Loop2_12x4Kernel.x $(LDFLAGS) 
+driver_Parallel_Loop2_12x4Kernel.x: $(OBJS_Parallel_Loop2_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Parallel_Loop2_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Parallel_Loop2_12x4Kernel.x $(LDFLAGS) 
 
-test_Parallel_Loop2_12x4Kernel: driver_Parallel_Loop2_12x4Kernel.x
+Parallel_Loop2_12x4Kernel: driver_Parallel_Loop2_12x4Kernel.x
 	echo "Name = 'Parallel\_Loop2\_12x4Kernel';" > data/output_Parallel_Loop2_12x4Kernel.m
 	echo " " >> data/output_Parallel_Loop2_12x4Kernel.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Parallel_Loop2_12x4Kernel.x >> data/output_Parallel_Loop2_12x4Kernel.m
 
 # ---------------------
 
-TEST_OBJS_Parallel_Loop3_12x4Kernel := driver.o Gemm_Parallel_Loop3_12x4Kernel.o
+OBJS_Parallel_Loop3_12x4Kernel := driver.o Gemm_Parallel_Loop3_12x4Kernel.o
 
-driver_Parallel_Loop3_12x4Kernel.x: $(TEST_OBJS_Parallel_Loop3_12x4Kernel) $(UTIL_OBJS)
-	$(LINKER) $(TEST_OBJS_Parallel_Loop3_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Parallel_Loop3_12x4Kernel.x $(LDFLAGS) 
+driver_Parallel_Loop3_12x4Kernel.x: $(OBJS_Parallel_Loop3_12x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Parallel_Loop3_12x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Parallel_Loop3_12x4Kernel.x $(LDFLAGS) 
 
-test_Parallel_Loop3_12x4Kernel: driver_Parallel_Loop3_12x4Kernel.x
+Parallel_Loop3_12x4Kernel: driver_Parallel_Loop3_12x4Kernel.x
 	echo "Name = 'Parallel\_Loop3\_12x4Kernel';" > data/output_Parallel_Loop3_12x4Kernel.m
 	echo " " >> data/output_Parallel_Loop3_12x4Kernel.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Parallel_Loop3_12x4Kernel.x >> data/output_Parallel_Loop3_12x4Kernel.m
