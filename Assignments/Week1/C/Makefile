@@ -16,7 +16,7 @@ NLAST_SMALL:= 500#    largest size to be timed for slow implementations.
 NLAST      := 2000#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
-LDFLAGS    := -lpthread -m64 -lm 
+LDFLAGS    := -fopenmp -lpthread -m64 -lm 
 
 UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
 
@@ -520,8 +520,6 @@ Plot_Outer_P:
 	make P_bli_dger
 
 # ---------------------                                                               
-NLAST_SMALL:= 1000 # Change the size of the largest problem tested
-
 Plot_All_Outer:
 	make I_dgemv
 	make I_bli_dgemv
