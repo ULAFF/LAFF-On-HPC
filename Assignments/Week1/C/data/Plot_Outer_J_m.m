@@ -5,8 +5,8 @@
 % Gemm_J_Gemv_I_Dots.c, Gemm_J_Gemv_J_daxpy.c, etc.
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/.  After implementing the various 
-% versions,  execute 
+% the directory to Assignments/Week1/C/.  After implementing the various versions,  
+% execute 
 % 
 %        make JPI   (actually, you probably did this one already)
 % 
@@ -56,7 +56,7 @@ plot( data(:,1), data(:,5), 'DisplayName', 'JPI', 'MarkerSize', 8, 'LineWidth', 
       'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 2,: ) );
 
 % Plot time data for JP_Axpy  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_J_Gemv_J_Axpy  
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -65,7 +65,7 @@ if ( 1 )
 end
 
 % Plot time data for JIP  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JIP
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -74,7 +74,7 @@ if ( 1 )
 end
 
 % Plot time data for J_Gemv_I_Dots  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_J_Gemv_I_Dots
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -83,7 +83,7 @@ if ( 1 )
 end
 
 % Plot time data for J_dgemv  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_J_dgemv
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -92,7 +92,7 @@ if ( 1 )
 end
 
 % Plot time data for J_bli_dgemv  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_J_bli_dgemv 
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -123,5 +123,5 @@ legend2 = legend( axes2, 'show' );
 set( legend2, 'Location', 'northwest', 'FontSize', 18) ;
 
 % Uncomment if you want to create a pdf for the graph
-% print( 'Plot_Inner_P.pdf', '-dpdf' );
+% print( 'Plot_Outer_J.pdf', '-dpdf' );
 %%

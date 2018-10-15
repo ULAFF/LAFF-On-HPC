@@ -1,37 +1,39 @@
-%% Performance of implementations of loop orderings with inner loop indexed with "J"
+%% Performance of implementations of loop orderings with inner loop indexed with "P"
 %% This Live Script
 % This Live Script helps you visualize the performance of implementations that 
-% order the loops so that the "J" loop is the inner-most loop:  Gemm_IPJ.c, Gemm_IP_Axpy.c, 
-% Gemm_IP_axpy.c, Gemm_IP_dbli_daxpyv.c, Gemm_PIJ.c, Gemm_PI_Axpy.c, Gemm_PI_axpy.c, 
-% Gemm_PI_dbli_daxpyv.c.
+% order the loops so that the "P" loop is the inner-most loop:  Gemm_IJP.c, Gemm_IJ_Dots.c, 
+% Gemm_IJ_ddot.c, Gemm_IJ_bli_ddotxv.c, Gemm_JIP.c, Gemm_JI_Dots.c, Gemm_JI_ddot.c, 
+% Gemm_JI_bli_ddotxv.c.
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/.  After implementing the various 
-% versions,  execute 
+% the directory to Assignments/Week1/C/.  After implementing the various versions,  
+% execute 
 % 
-%        make IPJ   (actually, you probably did this one already)
+%        make IJP    (actually, you probably did this one already)
 % 
-%        make IP_Axpy
+%        make IJ_Dots
 % 
-%        make IP_daxpy
+%        make IJ_ddot
 % 
-%        make IP_bli_daxpyv
+%        make IJ_bli_ddotxv
 % 
-%        make PIJ   (actually, you probably did this one already)
+%        make JIP    (actually, you probably did this one already)
 % 
-%        make PI_Axpy
+%        make JI_Dots
 % 
-%        make PI_daxpy
+%        make JI_ddot
 % 
-%        make PI_bli_daxpyv
+%        make JI_bli_ddotxv
 % 
-% or, 
+% or, alternatively, if you have created all implementations
+% 
+%       make Inner_P
 % 
 % This compiles and executes a driver routine (the source of which is in 
 % driver.c) that collects accuracy and performance data for the various implementations.  
 % 
 % When completed, various data is in output file 'output_XYZ.m' (for XYZ 
-% $$ \in $$ {IPJ,IP_Axpy,...}) in the same directory where you found this Live 
+% $$ \in $$ {IJP,IJ_Dots,...}) in the same directory where you found this Live 
 % Script (LAFF-On-HPC/Assignments/Week1/C/data/).  This Life Script then creates 
 % graphs from that timing data.  Go ahead and click on "Run All".  It executes 
 % all the code in the rest of this file.  You will want to look at the graphs 
@@ -51,74 +53,74 @@ xlabel( 'matrix dimension m=n=k', 'FontName', 'Helvetica Neue' );
 box(axes2,'on');
 set( axes2, 'FontName', 'Helvetica Neue', 'FontSize', 18);
              
-% Plot time data for JPI  
+% Plot time data for IJP  
 output_IJP   % load data for IJP ordering
 assert( max(abs(data(:,6))) < 1.0e-10, ...
     'Hmmm, better check if there is an accuracy problem');
 plot( data(:,1), data(:,5), 'DisplayName', 'IJP', 'MarkerSize', 8, 'LineWidth', 2, ...
       'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 2,: ) );
 
-% Plot time data for JP_Axpy  (to plot change "0" to "1")
+% Plot time data for IP_Dots  (to plot change "0" to "1")
 if ( 1 ) 
-  output_IP_Axpy  
+  output_IJ_Dots   
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'IP\_Axpy', 'MarkerSize', 8, 'LineWidth', 2, ...
+  plot( data(:,1), data(:,5), 'DisplayName', 'IJ\_Dots', 'MarkerSize', 8, 'LineWidth', 2, ...
         'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 3,: ) );
 end
 
-% Plot time data for IP_daxpy (to plot change "0" to "1")
+% Plot time data for IJ_ddot  (to plot change "0" to "1")
 if ( 1 ) 
-  output_IP_daxpy  
+  output_IJ_ddot   
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'IP\_daxpy', 'MarkerSize', 8, 'LineWidth', 2, ...
+  plot( data(:,1), data(:,5), 'DisplayName', 'IJ\_ddot', 'MarkerSize', 8, 'LineWidth', 2, ...
         'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 4,: ) );
 end
 
-% Plot time data for JP_bli_daxpyv  (to plot change "0" to "1")
+% Plot time data for IJ_bli_ddotxv  (to plot change "0" to "1")
 if ( 1 ) 
-  output_IP_bli_daxpyv   
+  output_IJ_bli_ddotxv   
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'IP\_bli\_daxpyv', 'MarkerSize', 8, 'LineWidth', 2, ...
+  plot( data(:,1), data(:,5), 'DisplayName', 'IJ\_bli\_ddotxv', 'MarkerSize', 8, 'LineWidth', 2, ...
         'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 5,: ) );
 end
 
-% Plot time data for PIJ  (to plot change "0" to "1")
+% Plot time data for JIP  (to plot change "0" to "1")
 if ( 1 ) 
-  output_PIJ  
+  output_JIP  
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'PIJ', 'MarkerSize', 8, 'LineWidth', 3, ...
+  plot( data(:,1), data(:,5), 'DisplayName', 'JIP', 'MarkerSize', 8, 'LineWidth', 3, ...
         'Marker', 'o', 'LineStyle', '--', 'Color', plot_colors( 2,: ) );
 end
 
-% Plot time data for PI_Axpy  (to plot change "0" to "1")
+% Plot time data for JI_Dots  (to plot change "0" to "1")
 if ( 1 ) 
-  output_PI_Axpy   
+  output_JI_Dots   
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'PI\_Axpy', 'MarkerSize', 8, 'LineWidth', 3, ...
+  plot( data(:,1), data(:,5), 'DisplayName', 'JI\_Dots', 'MarkerSize', 8, 'LineWidth', 3, ...
         'Marker', 'o', 'LineStyle', '--', 'Color', plot_colors( 3,: ) );
 end
 
-% Plot time data for PI_daxpy  (to plot change "0" to "1")
+% Plot time data for JI_ddot  (to plot change "0" to "1")
 if ( 1 ) 
-  output_PI_daxpy 
+  output_JI_ddot   
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'PI\_daxpy', 'MarkerSize', 8, 'LineWidth', 3, ...
+  plot( data(:,1), data(:,5), 'DisplayName', 'JI\_ddot', 'MarkerSize', 8, 'LineWidth', 3, ...
         'Marker', 'o', 'LineStyle', '--', 'Color', plot_colors( 4,: ) );
 end
 
-% Plot time data for PI_bli_daxpyv  (to plot change "0" to "1")
+% Plot time data for JI_bli_ddotxv  (to plot change "0" to "1")
 if ( 1 ) 
-  output_PI_bli_daxpyv  
+  output_JI_bli_ddotxv  
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
-  plot( data(:,1), data(:,5), 'DisplayName', 'PI\_bli\_daxpyv', 'MarkerSize', 8, 'LineWidth', 3, ...
-        'Marker', 'o', 'LineStyle', '--', 'Color', plot_colors( 4,: ) );
+  plot( data(:,1), data(:,5), 'DisplayName', 'JI\_bli\_ddotxv', 'MarkerSize', 8, 'LineWidth', 3, ...
+        'Marker', 'o', 'LineStyle', '--', 'Color', plot_colors( 5,: ) );
 end
 
 % Optionally show the reference implementation performance data

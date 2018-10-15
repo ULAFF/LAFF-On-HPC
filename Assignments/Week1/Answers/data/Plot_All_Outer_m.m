@@ -4,10 +4,10 @@
 % "dgemv" (matrix-vector multiplication) and "dger" (rank-1 update).
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/.  After implementing the various 
-% versions,  execute
+% the directory to Assignments/Week1/C/.  After implementing the various versions,  
+% execute
 % 
-%       make Plot_All_Outer
+%       make All_Outer
 % 
 % (This reruns many previous experiments, but with larger problem sizes.)
 
@@ -42,7 +42,7 @@ if ( 0 )
 end
 
 % Plot time data for J_bli_dgemv  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_J_bli_dgemv
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -60,7 +60,7 @@ if ( 0 )
 end
 
 % Plot time data for P_bli_dger (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_P_bli_dger
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');

@@ -6,8 +6,8 @@
 % Gemm_PJ_bli_ddaxpyv.c.
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/.  After implementing the various 
-% versions,  execute 
+% the directory to Assignments/Week1/C/.  After implementing the various versions,  
+% execute 
 % 
 %        make PJI   (actually, you probably did this one already)
 % 
@@ -27,7 +27,7 @@
 % 
 % or, alternatively, if you have created all implementations
 % 
-%       make Plot_Inner_I
+%       make Inner_I
 % 
 % This compiles and executes a driver routine (the source of which is in 
 % driver.c) that collects accuracy and performance data for the various implementations.  
@@ -61,7 +61,7 @@ plot( data(:,1), data(:,5), 'DisplayName', 'JPI', 'MarkerSize', 8, 'LineWidth', 
       'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 2,: ) );
 
 % Plot time data for JP_Axpy  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JP_Axpy  
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -70,7 +70,7 @@ if ( 1 )
 end
 
 % Plot time data for JP_daxpy (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JP_daxpy  
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -79,7 +79,7 @@ if ( 1 )
 end
 
 % Plot time data for JP_bli_daxpyv  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JP_bli_daxpyv   
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -88,7 +88,7 @@ if ( 1 )
 end
 
 % Plot time data for PJI  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_PJI  
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -97,7 +97,7 @@ if ( 1 )
 end
 
 % Plot time data for PJ_Axpy  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_PJ_Axpy   
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -106,7 +106,7 @@ if ( 1 )
 end
 
 % Plot time data for PJ_daxpy  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_PJ_daxpy 
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -115,7 +115,7 @@ if ( 1 )
 end
 
 % Plot time data for PJ_bli_daxpyv  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_PJ_bli_daxpyv  
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');

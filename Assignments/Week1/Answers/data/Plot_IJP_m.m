@@ -15,7 +15,7 @@
 % of matrix-matrix multiplication in Gemm_IJP.c.
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/ and execute 
+% the directory to Assignments/Week1/C/ and execute 
 % 
 %        make IJP
 % 

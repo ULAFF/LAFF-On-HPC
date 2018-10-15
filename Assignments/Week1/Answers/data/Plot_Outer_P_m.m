@@ -5,8 +5,8 @@
 % Gemm_P_Ger_J_Axpy, Gemm_P_Ger_I_Axpy, etc.
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/.  After implementing the various 
-% versions,  execute 
+% the directory to Assignments/Week1/C/.  After implementing the various versions,  
+% execute 
 % 
 %        make PIJ   (actually, you probably did this one already)
 % 
@@ -55,7 +55,7 @@ plot( data(:,1), data(:,5), 'DisplayName', 'PIJ', 'MarkerSize', 8, 'LineWidth', 
       'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 2,: ) );
 
 % Plot time data for PJI (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_PJI 
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -64,7 +64,7 @@ if ( 1 )
 end
 
 % Plot time data for P_Ger_J_Axpy  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_P_Ger_J_Axpy
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -73,7 +73,7 @@ if ( 1 )
 end
 
 % Plot time data for P_Ger_I_Axpy  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_P_Ger_I_Axpy
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -82,7 +82,7 @@ if ( 1 )
 end
 
 % Plot time data for P_dger (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_P_dger
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -91,7 +91,7 @@ if ( 1 )
 end
 
 % Plot time data for P_bli_dger  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_P_bli_dger
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -119,8 +119,7 @@ if ( 0 )
 end
 
 legend2 = legend( axes2, 'show' );
-set( legend2, 'Location', 'northwest', 'FontSize', 18) ;
-
+set( legend2, 'Location', 'northwest', 'FontSize', 18) ;0
 % Uncomment if you want to create a pdf for the graph
-% print( 'Plot_Inner_P.pdf', '-dpdf' );
+% print( 'Plot_Outer_P.pdf', '-dpdf' );
 %%

@@ -5,8 +5,8 @@
 % Gemm_PIJ.c, and Gemm_PJI.c,  
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/.  After implementing the various 
-% versions,  execute 
+% the directory to Assignments/Week1/C/.  After implementing the various versions,  
+% execute 
 % 
 %        make IJP    (actually, you probably did this one already)
 % 
@@ -20,8 +20,12 @@
 % 
 %        make PJI
 % 
-% This compiles and executes a driver routine (the source of which is in 
-% driver.c) that collects accuracy and performance data for the various implementations.  
+% or, if you have implemented them all, you can execute
+% 
+%        make All_Orderings
+% 
+% These compile and execute a driver routine (the source of which is in driver.c) 
+% that collects accuracy and performance data for the various implementations.  
 % 
 % When completed, various data is in output file 'output_XYZ.m' (for XYZ 
 % $$ \in $$ {IJP,IPJ,JIP,JPI,PIJ,PJI}) in the same directory where you found this 

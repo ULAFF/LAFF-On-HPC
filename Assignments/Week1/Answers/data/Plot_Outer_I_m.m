@@ -5,8 +5,8 @@
 % Gemm_dgemv.c, Gemm_bli_dgemv.c.
 % 
 % To gather the performance data, in the command (terminal) window change 
-% the directory to LAFF-On-HPC/Assignments/Week1/C/.  After implementing the various 
-% versions,  execute 
+% the directory to Assignments/Week1/C/.  After implementing the various versions,  
+% execute 
 % 
 %        make IJP  (actually, you probably did this one already)
 % 
@@ -51,7 +51,7 @@ plot( data(:,1), data(:,5), 'DisplayName', 'IJP', 'MarkerSize', 8, 'LineWidth', 
       'Marker', 'o', 'LineStyle', '-.', 'Color', plot_colors( 2,: ) );
 
 % Plot time data for IPJ  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_IPJ
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -60,7 +60,7 @@ if ( 1 )
 end
 
 % Plot time data for I_dgemv  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_I_dgemv
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -69,7 +69,7 @@ if ( 1 )
 end
 
 % Plot time data for I_bli_dgemv  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_I_bli_dgemv
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
