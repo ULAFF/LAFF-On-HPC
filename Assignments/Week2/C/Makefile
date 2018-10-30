@@ -12,26 +12,78 @@ FFLAGS     := $(CFLAGS)
 # set the range of experiments to be performed
 NREPEATS   := 3#       number of times each experiment is repeated.  The best time is reported.
 NFIRST     := 48#     smallest size to be timed.
-NLAST_SMALL:= 1000#    largest size to be timed for slow implementations.
+NLAST_SMALL:= 500#    largest size to be timed for slow implementations.
 NLAST      := 1000#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
-LDFLAGS    := -fopenmp -lpthread -m64 -lm 
+LDFLAGS    := -lpthread -m64 -lm # -fopenmp -lpthread -m64 -lm 
 
 UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
 
 # ---------------------
 
-OBJS_IJP_MRxNRxKR := driver.o Gemm_IJP_MRxNRxKR.o
+OBJS_IJP_mbxnbxkb := driver.o Gemm_IJP_mbxnbxkb.o
 
-driver_IJP_MRxNRxKR.x: $(OBJS_IJP_MRxNRxKR) $(UTIL_OBJS)
-	$(LINKER) $(OBJS_IJP_MRxNRxKR) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP_MRxNRxKR.x $(LDFLAGS) 
+driver_IJP_mbxnbxkb.x: $(OBJS_IJP_mbxnbxkb) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_IJP_mbxnbxkb) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJP_mbxnbxkb.x $(LDFLAGS) 
 
-IJP_MRxNRxKR: driver_IJP_MRxNRxKR.x
-	echo "Name = 'IJP\_MRxNRxKR';" > data/output_IJP_MRxNRxKR.m
-	echo " " >> data/output_IJP_MRxNRxKR.m
-	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP_MRxNRxKR.x >> data/output_IJP_MRxNRxKR.m
-	more data/output_IJP_MRxNRxKR.m
+IJP_mbxnbxkb: driver_IJP_mbxnbxkb.x
+	echo "Name = 'IJP\_mbxnbxkb';" > data/output_IJP_mbxnbxkb.m
+	echo " " >> data/output_IJP_mbxnbxkb.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJP_mbxnbxkb.x >> data/output_IJP_mbxnbxkb.m
+	more data/output_IJP_mbxnbxkb.m
+
+# ---------------------
+
+OBJS_JIP_mbxnbxkb := driver.o Gemm_JIP_mbxnbxkb.o
+
+driver_JIP_mbxnbxkb.x: $(OBJS_JIP_mbxnbxkb) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JIP_mbxnbxkb) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JIP_mbxnbxkb.x $(LDFLAGS) 
+
+JIP_mbxnbxkb: driver_JIP_mbxnbxkb.x
+	echo "Name = 'JIP\_mbxnbxkb';" > data/output_JIP_mbxnbxkb.m
+	echo " " >> data/output_JIP_mbxnbxkb.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JIP_mbxnbxkb.x >> data/output_JIP_mbxnbxkb.m
+	more data/output_JIP_mbxnbxkb.m
+
+# ---------------------
+
+OBJS_IJ_mbxnbxk := driver.o Gemm_IJ_mbxnbxk.o
+
+driver_IJ_mbxnbxk.x: $(OBJS_IJ_mbxnbxk) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_IJ_mbxnbxk) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJ_mbxnbxk.x $(LDFLAGS) 
+
+IJ_mbxnbxk: driver_IJ_mbxnbxk.x
+	echo "Name = 'IJ\_mbxnbxkb';" > data/output_IJ_mbxnbxk.m
+	echo " " >> data/output_IJ_mbxnbxk.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJ_mbxnbxk.x >> data/output_IJ_mbxnbxk.m
+	more data/output_IJ_mbxnbxk.m
+
+# ---------------------
+
+OBJS_JI_mbxnbxk := driver.o Gemm_JI_mbxnbxk.o
+
+driver_JI_mbxnbxk.x: $(OBJS_JI_mbxnbxk) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_JI_mbxnbxk) $(UTIL_OBJS) $(BLAS_LIB) -o driver_JI_mbxnbxk.x $(LDFLAGS) 
+
+JI_mbxnbxk: driver_JI_mbxnbxk.x
+	echo "Name = 'JI\_mbxnbxkb';" > data/output_JI_mbxnbxk.m
+	echo " " >> data/output_JI_mbxnbxk.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_JI_mbxnbxkb.x >> data/output_JI_mbxnbxkb.m
+	more data/output_JI_mbxnbxkb.m
+
+# ---------------------
+
+OBJS_IJ_P_bli_dger := driver.o Gemm_IJ_P_bli_dger.o
+
+driver_IJ_P_bli_dger.x: $(OBJS_IJ_P_bli_dger) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_IJ_P_bli_dger) $(UTIL_OBJS) $(BLAS_LIB) -o driver_IJ_P_bli_dger.x $(LDFLAGS) 
+
+IJ_P_bli_dger: driver_IJ_P_bli_dger.x
+	echo "Name = 'IJ\_P\_bli\_dger';" > data/output_IJ_P_bli_dger.m
+	echo " " >> data/output_IJ_P_bli_dger.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST_SMALL) $(NINC)" | ./driver_IJ_P_bli_dger.x >> data/output_IJ_P_bli_dger.m
+	more data/output_IJ_P_bli_dger.m
 
 # ---------------------
 
