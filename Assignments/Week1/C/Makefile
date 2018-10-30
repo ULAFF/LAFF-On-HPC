@@ -16,7 +16,7 @@ NLAST_SMALL:= 500#    largest size to be timed for slow implementations.
 NLAST      := 2000#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
-LDFLAGS    := -fopenmp -lpthread -m64 -lm 
+LDFLAGS    := -lpthread -m64 -lm 
 
 UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
 
@@ -451,7 +451,7 @@ J_bli_dgemv: driver_J_bli_dgemv.x
 
 # ---------------------
 
-Plot_All_Orderings:
+All_Orderings:
 	make IJP
 	make IPJ
 	make JIP
@@ -460,7 +460,7 @@ Plot_All_Orderings:
 	make PJI
 # --------------------- 
 
-Plot_Inner_I:
+Inner_I:
 	make JPI
 	make JP_Axpy
 	make JP_daxpy
@@ -472,7 +472,7 @@ Plot_Inner_I:
 
 # ---------------------                                                                    
 
-Plot_Inner_J:
+Inner_J:
 	make IPJ
 	make IP_Axpy
 	make IP_daxpy
@@ -484,7 +484,7 @@ Plot_Inner_J:
 
 # ---------------------                                                               
 
-Plot_Inner_P:
+Inner_P:
 	make IJP
 	make IJ_Dots
 	make IJ_ddot
@@ -496,7 +496,7 @@ Plot_Inner_P:
 
 # ---------------------                                                           
     
-Plot_Outer_I:
+Outer_I:
 	make IJP
 	make IPJ
 	make I_dgemv
@@ -504,14 +504,14 @@ Plot_Outer_I:
 
 # ---------------------                                                           
     
-Plot_Outer_J:
+Outer_J:
 	make JIP
 	make JPI
 	make J_dgemv
 	make J_bli_dgemv
 
 # ---------------------                                                               
-Plot_Outer_P:
+Outer_P:
 	make PIJ
 	make PJI
 	make P_Ger_J_Axpy
@@ -520,7 +520,7 @@ Plot_Outer_P:
 	make P_bli_dger
 
 # ---------------------                                                               
-Plot_All_Outer:
+All_Outer:
 	make I_dgemv
 	make I_bli_dgemv
 	make J_dgemv
