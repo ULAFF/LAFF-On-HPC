@@ -8,11 +8,9 @@
 #define MR 4
 #define NR 4
 
-void Gemm_IJ_4x4Kernel( int, int, int, double *, int, double *, int, double *, int );
-
 void Gemm_4x4Kernel( int, double *, int, double *, int, double *, int );
 
-void GemmWrapper( int m, int n, int k, double *A, int ldA,
+void MyGemm( int m, int n, int k, double *A, int ldA,
 		  double *B, int ldB, double *C, int ldC )
 {
   if ( m % MR != 0 || n % NR != 0 ){
@@ -20,12 +18,6 @@ void GemmWrapper( int m, int n, int k, double *A, int ldA,
     exit( 0 );
   }
   
-  Gemm_IJ_4x4Kernel( m, n, k, A, ldA, B, ldB, C, ldC );
-}
-
-void Gemm_IJ_4x4Kernel( int m, int n, int k, double *A, int ldA,
-                                  double *B, int ldB, double *C, int ldC )
-{
   for ( int i=0; i<m; i+=MR ) /* m is assumed to be a multiple of MR */
     for ( int j=0; j<n; j+=NR ) /* n is assumed to be a multiple of NR */
       Gemm_4x4Kernel( k, &alpha( i,0 ), ldA, &beta( 0,j ), ldB, &gamma( i,j ), ldC );
