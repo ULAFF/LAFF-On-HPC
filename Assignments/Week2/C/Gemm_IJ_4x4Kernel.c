@@ -8,6 +8,8 @@
 #define MR 4
 #define NR 4
 
+void Gemm_IJ_4x4Kernel( int, int, int, double *, int, double *, int, double *, int );
+
 void Gemm_4x4Kernel( int, double *, int, double *, int, double *, int );
 
 void MyGemm( int m, int n, int k, double *A, int ldA,
@@ -51,6 +53,27 @@ void Gemm_4x4Kernel( int k, double *A, int ldA, double *B, int ldB,
     
     /* REPEAT for second, third, and fourth columns of C.  Notice that the 
        current column of A needs not be reloaded. */
+
+    /* Load/broadcast beta( p,1 ). */
+    beta_p_j = _mm256_broadcast_sd( &beta( p, 1) );
+    
+    /* update the second column of C with the current column of A times
+       beta ( p,1 ) */
+    gamma_0123_1 = _mm256_fmadd_pd( alpha_0123_p, beta_p_j, gamma_0123_1 );
+
+    /* Load/broadcast beta( p,2 ). */
+    beta_p_j = _mm256_broadcast_sd( &beta( p, 2) );
+    
+    /* update the third column of C with the current column of A times
+       beta ( p,2 ) */
+    gamma_0123_2 = _mm256_fmadd_pd( alpha_0123_p, beta_p_j, gamma_0123_2 );
+
+    /* Load/broadcast beta( p,3 ). */
+    beta_p_j = _mm256_broadcast_sd( &beta( p, 3) );
+    
+    /* update the fourth column of C with the current column of A times
+       beta ( p,3 ) */
+    gamma_0123_3 = _mm256_fmadd_pd( alpha_0123_p, beta_p_j, gamma_0123_3 );
   }
   
   /* Store the updated results */
