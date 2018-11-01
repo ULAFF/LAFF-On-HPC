@@ -48,7 +48,7 @@ if ( 1 )
 end
 
 % Plot time data for JI_8x4Kernel   (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JI_8x4Kernel
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -57,7 +57,7 @@ if ( 1 )
 end
 
 % Plot time data for JI_12x4Kernel (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JI_12x4Kernel
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -66,7 +66,7 @@ if ( 1 )
 end
 
 % Plot time data for JI_4x8Kernel  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JI_4x8Kernel
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -75,7 +75,7 @@ if ( 1 )
 end
 
 % Plot time data for JI_8x64Kernel  (to plot change "0" to "1")
-if ( 1 ) 
+if ( 0 ) 
   output_JI_8x6Kernel
   assert( max(abs(data(:,6))) < 1.0e-10, ...
       'Hmmm, better check if there is an accuracy problem');
@@ -84,7 +84,7 @@ if ( 1 )
 end
 
 % Optionally show the reference implementation performance data
-if ( 1 )
+if ( 0s )
   plot( data(:,1), data(:,3), 'MarkerSize', 8, 'LineWidth', 1, ...
         'LineStyle', '-', 'DisplayName', 'Ref', 'Color', plot_colors( 1,: ) );
 end
