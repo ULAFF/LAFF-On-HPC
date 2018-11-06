@@ -28,7 +28,7 @@ void dgemm_( char *, char *,                 // transA, transB
 
 /* GemmWRapper is a common interface to all the implementations we will 
    develop so we don't have to keep rewriting this driver routine. */
-void GemmWrapper( int, int, int, double *, int, double *, int, double *, int );
+void MyGemm( int, int, int, double *, int, double *, int, double *, int );
 
 #define MR 12
 #define NR 4
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
 	   B will be the address where B is stored.   Addressed with beta(i,j).
 	   C will be the address where C is stored.   Addressed with gamma(i,j).
 
-	   Now, we will compute C = A B + C with via routine GemmWrapper
+	   Now, we will compute C = A B + C with via routine MyGemm
 	   and also with a reference implementation.  Therefore, we will
 	   utilize two more arrays:
  
@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 	                   // it may throw the timings of a next
                            // experiment.
 
-	/* Time GemmWrapper */
+	/* Time MyGemm */
 
 	for ( irep=0; irep<nrepeats; irep++ ){
 	  /* Copy vector Cold to C */
@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 	  dtime = FLA_Clock();
     
 	  /* Compute C = A B + C */
-	  GemmWrapper( m, n, k, A, ldA, B, ldB, C, ldC );
+	  MyGemm( m, n, k, A, ldA, B, ldB, C, ldC );
 
 	  /* stop clock */
 	  dtime = FLA_Clock() - dtime;

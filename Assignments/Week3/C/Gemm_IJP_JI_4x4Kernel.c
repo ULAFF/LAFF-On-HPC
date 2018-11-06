@@ -5,20 +5,20 @@
 #define beta( i,j )  B[ (j)*ldB + (i) ]   // map beta( i,j ) to array B
 #define gamma( i,j ) C[ (j)*ldC + (i) ]   // map gamma( i,j ) to array C
 
-#define min( x, y ) ( ( x ) < ( y ) ? x : y )
+#define min( x, y )  ( (x) < (y) ? x : y )
 
-#define NC 1024
-#define KC 128
-#define MC 180
+void Gemm_4x4Kernel( int, double *, int, double *, int,
+		      double *, int );
+
+void Gemm_JI_4x4Kernel( int, int, int, double *, int, double *, int,
+		        double *, int );
+
 #define MR 4
 #define NR 4
 
-void LoopFive( int, int, int, double *, int, double *, int, double *, int );
-void LoopFour( int, int, int, double *, int, double *, int, double *, int );
-void LoopThree( int, int, int, double *, int, double *, int, double *, int );
-void LoopTwo( int, int, int, double *, int, double *, int, double *, int );
-void LoopOne( int, int, int, double *, int, double *, int, double *, int );
-void Gemm_4x4Kernel( int, double *, int, double *, int, double *, int );
+#define MC 96
+#define NC 96
+#define KC 96
 
 void MyGemm( int m, int n, int k, double *A, int ldA,
 	     double *B, int ldB, double *C, int ldC )
@@ -31,53 +31,26 @@ void MyGemm( int m, int n, int k, double *A, int ldA,
     printf( "n and NC must be multiples of NR\n" );
     exit( 0 );
   }
-
-  LoopFive( m, n, k, A, ldA, B, ldB, C, ldC );
-}
-
-void LoopFive( int m, int n, int k, double *A, int ldA,
-		   double *B, int ldB, double *C, int ldC )
-{
-  for ( int j=0; j<n; j+=NC ) {
-    int jb = min( NC, n-j );    /* Last loop may not involve a full block */
-    LoopFour( m, jb, k, A, ldA, &beta( 0,j ), ldB, &gamma( 0,j ), ldC );
-  }
-}
-
-void LoopFour( int m, int n, int k, double *A, int ldA, 
-	       double *B, int ldB, double *C, int ldC )
-{
-  for ( int p=0; p<k; p+=KC ) {
-    int pb = min( KC, k-p );    /* Last loop may not involve a full block */
-    LoopThree( m, n, pb, &alpha( 0, p ), ldA, &beta( p, 0 ), ldB, C, ldC );
-  }
-}
-
-void LoopThree( int m, int n, int k, double *A, int ldA, 
-		double *B, int ldB, double *C, int ldC )
-{
+  
   for ( int i=0; i<m; i+=MC ) {
-    int ib = min( MC, m-i );    /* Last loop may not involve a full block */
-    LoopTwo( ib, n, k, &alpha( i, 0), ldA, B, ldB, &gamma( i,0 ), ldC );
+    int ib = min( MC, m-i );        /* Last block may not be a full block */
+    for ( int j=0; j<n; j+=NC ) {
+      int jb = min( NC, n-j );        /* Last block may not be a full block */
+      for ( int p=0; p<k; p+=KC ) {
+        int pb = min( KC, k-p );        /* Last block may not be a full block */
+        Gemm_JI_4x4Kernel
+          ( ib, jb, pb, &alpha( i,p ), ldA, &beta( p,j ), ldB, &gamma( i,j ), ldC );
+      }
+    }
   }
 }
 
-void LoopTwo( int m, int n, int k, double *A, int ldA,
-	      double *B, int ldB, double *C, int ldC )
+void Gemm_JI_4x4Kernel( int m, int n, int k, double *A, int ldA,
+                                  double *B, int ldB, double *C, int ldC )
 {
-  for ( int j=0; j<n; j+=NR ) {
-    int jb = min( NR, n-j );
-    LoopOne( m, jb, k, A, ldA, &beta( 0,j ), ldB, &gamma( 0,j ), ldC );
-  }
-}
-
-void LoopOne( int m, int n, int k, double *A, int ldA,
-	      double *B, int ldB, double *C, int ldC )
-{
-  for ( int i=0; i<m; i+=MR ) {
-    int ib = min( MR, m-i );
-    Gemm_4x4Kernel( k, &alpha( i, 0 ), ldA, B, ldB, &gamma( i,0 ), ldC );
-  }
+  for ( int j=0; j<n; j+=NR ) /* n is assumed to be a multiple of NR */
+    for ( int i=0; i<m; i+=MR ) /* m is assumed to be a multiple of MR */
+      Gemm_4x4Kernel( k, &alpha( i,0 ), ldA, &beta( 0,j ), ldB, &gamma( i,j ), ldC );
 }
 
 #include<immintrin.h>

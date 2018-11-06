@@ -5,42 +5,42 @@
 #define beta( i,j )  B[ (j)*ldB + (i) ]   // map beta( i,j ) to array B
 #define gamma( i,j ) C[ (j)*ldC + (i) ]   // map gamma( i,j ) to array C
 
-#define min( x, y ) ( (x) < (y) ? x : y )
+#define min( x, y )  ( (x) < (y) ? x : y )
+
+void Gemm_12x4Kernel( int, double *, int, double *, int,
+		      double *, int );
+
+void Gemm_JI_12x4Kernel( int, int, int, double *, int, double *, int,
+		        double *, int );
 
 #define MR 12
 #define NR 4
 
-// int MC=144, KC=128;   /* We don't make these constants because we will later /*
-		      /* try a range of choices for MC and KC, to see what choice */
-                      /* gives best performance */
-int MC=252, KC=48;    
+#define MC 96
+#define NC 96
+#define KC 96
 
-
-void Gemm_PI_JI_12x4Kernel( int, int, int, double *, int, double *, int, double *, int );
-
-void Gemm_JI_12x4Kernel( int, int, int, double *, int, double *, int, double *, int );
-
-void Gemm_12x4Kernel( int, double *, int, double *, int, double *, int );
-
-void GemmWrapper( int m, int n, int k, double *A, int ldA,
-		  double *B, int ldB, double *C, int ldC )
+void MyGemm( int m, int n, int k, double *A, int ldA,
+	     double *B, int ldB, double *C, int ldC )
 {
-  if ( m % MR != 0 || n % NR != 0 ){
-    printf( "m and n must be multiples of MR and NR, respectively \n" );
+  if ( m % MR != 0 || MC % MR != 0 ){
+    printf( "m and MC must be multiples of MR\n" );
+    exit( 0 );
+  }
+  if ( n % NR != 0 || NC % NR != 0 ){
+    printf( "n and NC must be multiples of NR\n" );
     exit( 0 );
   }
   
-  Gemm_PI_JI_12x4Kernel( m, n, k, A, ldA, B, ldB, C, ldC );
-}
-
-void Gemm_PI_JI_12x4Kernel( int m, int n, int k, double *A, int ldA,
-			    double *B, int ldB, double *C, int ldC )
-{
-  for ( int p=0; p<k; p+=KC ){
-    int kb = min( k-p, KC );
-    for ( int i=0; i<m; i+=MC ){ /* m is assumed to be a multiple of MR */
-      int mb = min( m-i, MC );
-      Gemm_JI_12x4Kernel( mb, n, kb, &alpha( i,p ), ldA, &beta( p,0 ), ldB, &gamma( i,0 ), ldC );
+  for ( int i=0; i<m; i+=MC ) {
+    int ib = min( MC, m-i );        /* Last block may not be a full block */
+    for ( int j=0; j<n; j+=NC ) {
+      int jb = min( NC, n-j );        /* Last block may not be a full block */
+      for ( int p=0; p<k; p+=KC ) {
+        int pb = min( KC, k-p );        /* Last block may not be a full block */
+        Gemm_JI_12x4Kernel
+          ( ib, jb, pb, &alpha( i,p ), ldA, &beta( p,j ), ldB, &gamma( i,j ), ldC );
+      }
     }
   }
 }
