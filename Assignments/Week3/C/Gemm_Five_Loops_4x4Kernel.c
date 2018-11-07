@@ -40,7 +40,7 @@ void LoopFive( int m, int n, int k, double *A, int ldA,
 {
   for ( int j=0; j<n; j+=NC ) {
     int jb = min( NC, n-j );    /* Last loop may not involve a full block */
-    LoopFour( m, jb, k, A, ldA, &beta( 0,j ), ldB, &gamma( 0,j ), ldC );
+    LoopFour( m, jb, k, A, ldA, &beta(  ,   ), ldB, &gamma(   ,   ), ldC );
   }
 }
 
@@ -49,7 +49,7 @@ void LoopFour( int m, int n, int k, double *A, int ldA,
 {
   for ( int p=0; p<k; p+=KC ) {
     int pb = min( KC, k-p );    /* Last loop may not involve a full block */
-    LoopThree( m, n, pb, &alpha( 0, p ), ldA, &beta( p, 0 ), ldB, C, ldC );
+    LoopThree( m, n, pb, &alpha(  ,   ), ldA, &beta(  ,   ), ldB, C, ldC );
   }
 }
 
@@ -58,7 +58,7 @@ void LoopThree( int m, int n, int k, double *A, int ldA,
 {
   for ( int i=0; i<m; i+=MC ) {
     int ib = min( MC, m-i );    /* Last loop may not involve a full block */
-    LoopTwo( ib, n, k, &alpha( i, 0), ldA, B, ldB, &gamma( i,0 ), ldC );
+    LoopTwo( ib, n, k, &alpha(  ,   ), ldA, B, ldB, &gamma(   ,   ), ldC );
   }
 }
 
@@ -67,7 +67,7 @@ void LoopTwo( int m, int n, int k, double *A, int ldA,
 {
   for ( int j=0; j<n; j+=NR ) {
     int jb = min( NR, n-j );
-    LoopOne( m, jb, k, A, ldA, &beta( 0,j ), ldB, &gamma( 0,j ), ldC );
+    LoopOne( m, jb, k, A, ldA, &beta(   ,   ), ldB, &gamma(   ,   ), ldC );
   }
 }
 
@@ -76,7 +76,7 @@ void LoopOne( int m, int n, int k, double *A, int ldA,
 {
   for ( int i=0; i<m; i+=MR ) {
     int ib = min( MR, m-i );
-    Gemm_4x4Kernel( k, &alpha( i, 0 ), ldA, B, ldB, &gamma( i,0 ), ldC );
+    Gemm_4x4Kernel( k, &alpha(   ,    ), ldA, B, ldB, &gamma(   ,   ), ldC );
   }
 }
 
