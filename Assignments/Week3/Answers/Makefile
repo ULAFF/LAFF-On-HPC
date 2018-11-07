@@ -16,7 +16,7 @@ NLAST_SMALL:= 512#    largest size to be timed for slow implementations.
 NLAST      := 1000#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
-LDFLAGS    := -lpthread -m64 -lm # -fopenmp 
+LDFLAGS    := -fopenmp -lpthread -m64 -lm  
 
 UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
 
@@ -149,6 +149,19 @@ PI_JI_12x4Kernel_ldim: driver_PI_JI_12x4Kernel_ldim.x
 	echo " " >> data/output_PI_JI_12x4Kernel_ldim.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_PI_JI_12x4Kernel_ldim.x >> data/output_PI_JI_12x4Kernel_ldim.m
 	more data/output_PI_JI_12x4Kernel_ldim.m
+
+# ---------------------
+
+OBJS_Five_Loops_4x4Kernel := driver.o Gemm_Five_Loops_4x4Kernel.o
+
+driver_Five_Loops_4x4Kernel.x: $(OBJS_Five_Loops_4x4Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Five_Loops_4x4Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_4x4Kernel.x $(LDFLAGS) 
+
+Five_Loops_4x4Kernel: driver_Five_Loops_4x4Kernel.x
+	echo "Name = 'Five\_Loops\_4x4Kernel';" > data/output_Five_Loops_4x4Kernel.m
+	echo " " >> data/output_Five_Loops_4x4Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_4x4Kernel.x >> data/output_Five_Loops_4x4Kernel.m
+	more data/output_Five_Loops_4x4Kernel.m
 
 # ---------------------
 
