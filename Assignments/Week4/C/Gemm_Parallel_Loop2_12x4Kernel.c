@@ -77,8 +77,6 @@ void LoopThree( int m, int n, int k, double *A, int ldA, double *Btilde, double 
 
 void LoopTwo( int m, int n, int k, double *Atilde, double *Btilde, double *C, int ldC )
 {
-  #pragma omp parallel for
-
   for ( int j=0; j<n; j+=NR ) {
     int jb = min( NR, n-j );
     LoopOne( m, jb, k, Atilde, &Btilde[ j*k ], &gamma( 0,j ), ldC );
