@@ -77,6 +77,8 @@ void LoopThree( int m, int n, int k, double *A, int ldA, double *Btilde, double 
 
 void LoopTwo( int m, int n, int k, double *Atilde, double *Btilde, double *C, int ldC )
 {
+  #pragma omp parallel for
+
   for ( int j=0; j<n; j+=NR ) {
     int jb = min( NR, n-j );
     LoopOne( m, jb, k, Atilde, &Btilde[ j*k ], &gamma( 0,j ), ldC );
@@ -85,8 +87,6 @@ void LoopTwo( int m, int n, int k, double *Atilde, double *Btilde, double *C, in
 
 void LoopOne( int m, int n, int k, double *Atilde, double *MicroPanelB, double *C, int ldC )
 {
-  #pragma omp parallel for
-
   for ( int i=0; i<m; i+=MR ) {
     int ib = min( MR, m-i );
     Gemm_12x4Kernel_Packed( k, &Atilde[ i*k ], MicroPanelB, &gamma( i,0 ), ldC );
