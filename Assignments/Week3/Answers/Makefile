@@ -217,6 +217,19 @@ Five_Loops_Pack_12x4Kernel: driver_Five_Loops_Pack_12x4Kernel.x
 
 # ---------------------
 
+OBJS_Five_Loops_Pack_6x8Kernel := driver.o Gemm_Five_Loops_Pack_6x8Kernel.o
+
+driver_Five_Loops_Pack_6x8Kernel.x: $(OBJS_Five_Loops_Pack_6x8Kernel) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Five_Loops_Pack_6x8Kernel) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_6x8Kernel.x $(LDFLAGS) 
+
+Five_Loops_Pack_6x8Kernel: driver_Five_Loops_Pack_6x8Kernel.x
+	echo "Name = 'Five\_Loops\_Pack\_6x8Kernel';" > data/output_Five_Loops_Pack_6x8Kernel.m
+	echo " " >> data/output_Five_Loops_Pack_6x8Kernel.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_6x8Kernel.x >> data/output_Five_Loops_Pack_6x8Kernel.m
+	more data/output_Five_Loops_Pack_6x8Kernel.m
+
+# ---------------------
+
 OBJS_Five_Loops_Pack_12x4Kernel_OPT := driver.o Gemm_Five_Loops_Pack_12x4Kernel_OPT.o
 
 driver_Five_Loops_Pack_12x4Kernel_OPT.x: $(OBJS_Five_Loops_Pack_12x4Kernel_OPT) $(UTIL_OBJS)
