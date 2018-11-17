@@ -22,7 +22,7 @@ void Gemm_6x8Kernel_Packed( int, double *, double *, double *, int );
 void PackBlockA_MCxKC( int, int, double *, int, double * );
 void PackPanelB_KCxNC( int, int, double *, int, double * );
   
-void MyGemm( int m, int n, int k, double *B, int ldB,
+void MyGemm( int n, int m, int k, double *B, int ldB,
 	     double *A, int ldA, double *C, int ldC )
 {
   if ( m % MR != 0 || MC % MR != 0 ){
