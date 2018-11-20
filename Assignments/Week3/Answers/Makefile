@@ -16,7 +16,7 @@ NLAST_SMALL:= 512#    largest size to be timed for slow implementations.
 NLAST      := 1000#   largest size to be timed for fast implementations.
 NINC       := 48#     increment between sizes.
 
-LDFLAGS    := -fopenmp -lpthread -m64 -lm  
+LDFLAGS    := -lpthread -m64 -lm  # -fopenmp 
 
 UTIL_OBJS  := FLA_Clock.o MaxAbsDiff.o RandomMatrix.o
 
@@ -227,6 +227,58 @@ Five_Loops_Pack_6x8Kernel: driver_Five_Loops_Pack_6x8Kernel.x
 	echo " " >> data/output_Five_Loops_Pack_6x8Kernel.m
 	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_6x8Kernel.x >> data/output_Five_Loops_Pack_6x8Kernel.m
 	more data/output_Five_Loops_Pack_6x8Kernel.m
+
+# ---------------------
+
+OBJS_Five_Loops_Pack_6x8Kernel_Opt1 := driver.o Gemm_Five_Loops_Pack_6x8Kernel_Opt1.o
+
+driver_Five_Loops_Pack_6x8Kernel_Opt1.x: $(OBJS_Five_Loops_Pack_6x8Kernel_Opt1) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Five_Loops_Pack_6x8Kernel_Opt1) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_6x8Kernel_Opt1.x $(LDFLAGS) 
+
+Five_Loops_Pack_6x8Kernel_Opt1: driver_Five_Loops_Pack_6x8Kernel_Opt1.x
+	echo "Name = 'Five\_Loops\_Pack\_6x8Kernel_Opt1';" > data/output_Five_Loops_Pack_6x8Kernel_Opt1.m
+	echo " " >> data/output_Five_Loops_Pack_6x8Kernel_Opt1.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_6x8Kernel_Opt1.x >> data/output_Five_Loops_Pack_6x8Kernel_Opt1.m
+	more data/output_Five_Loops_Pack_6x8Kernel_Opt1.m
+
+# ---------------------
+
+OBJS_Five_Loops_Pack_6x8Kernel_Opt2 := driver.o Gemm_Five_Loops_Pack_6x8Kernel_Opt2.o
+
+driver_Five_Loops_Pack_6x8Kernel_Opt2.x: $(OBJS_Five_Loops_Pack_6x8Kernel_Opt2) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Five_Loops_Pack_6x8Kernel_Opt2) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_6x8Kernel_Opt2.x $(LDFLAGS) 
+
+Five_Loops_Pack_6x8Kernel_Opt2: driver_Five_Loops_Pack_6x8Kernel_Opt2.x
+	echo "Name = 'Five\_Loops\_Pack\_6x8Kernel_Opt2';" > data/output_Five_Loops_Pack_6x8Kernel_Opt2.m
+	echo " " >> data/output_Five_Loops_Pack_6x8Kernel_Opt2.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_6x8Kernel_Opt2.x >> data/output_Five_Loops_Pack_6x8Kernel_Opt2.m
+	more data/output_Five_Loops_Pack_6x8Kernel_Opt2.m
+
+# ---------------------
+
+OBJS_Five_Loops_Pack_6x8Kernel_Opt3 := driver.o Gemm_Five_Loops_Pack_6x8Kernel_Opt3.o
+
+driver_Five_Loops_Pack_6x8Kernel_Opt3.x: $(OBJS_Five_Loops_Pack_6x8Kernel_Opt3) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Five_Loops_Pack_6x8Kernel_Opt3) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_6x8Kernel_Opt3.x $(LDFLAGS) 
+
+Five_Loops_Pack_6x8Kernel_Opt3: driver_Five_Loops_Pack_6x8Kernel_Opt3.x
+	echo "Name = 'Five\_Loops\_Pack\_6x8Kernel_Opt3';" > data/output_Five_Loops_Pack_6x8Kernel_Opt3.m
+	echo " " >> data/output_Five_Loops_Pack_6x8Kernel_Opt3.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_6x8Kernel_Opt3.x >> data/output_Five_Loops_Pack_6x8Kernel_Opt3.m
+	more data/output_Five_Loops_Pack_6x8Kernel_Opt3.m
+
+# ---------------------
+
+OBJS_Five_Loops_Pack_6x8Kernel_Opt4 := driver.o Gemm_Five_Loops_Pack_6x8Kernel_Opt4.o
+
+driver_Five_Loops_Pack_6x8Kernel_Opt4.x: $(OBJS_Five_Loops_Pack_6x8Kernel_Opt4) $(UTIL_OBJS)
+	$(LINKER) $(OBJS_Five_Loops_Pack_6x8Kernel_Opt4) $(UTIL_OBJS) $(BLAS_LIB) -o driver_Five_Loops_Pack_6x8Kernel_Opt4.x $(LDFLAGS) 
+
+Five_Loops_Pack_6x8Kernel_Opt4: driver_Five_Loops_Pack_6x8Kernel_Opt4.x
+	echo "Name = 'Five\_Loops\_Pack\_6x8Kernel_Opt4';" > data/output_Five_Loops_Pack_6x8Kernel_Opt4.m
+	echo " " >> data/output_Five_Loops_Pack_6x8Kernel_Opt4.m
+	echo "$(NREPEATS) $(NFIRST) $(NLAST) $(NINC)" | ./driver_Five_Loops_Pack_6x8Kernel_Opt4.x >> data/output_Five_Loops_Pack_6x8Kernel_Opt4.m
+	more data/output_Five_Loops_Pack_6x8Kernel_Opt4.m
 
 # ---------------------
 
